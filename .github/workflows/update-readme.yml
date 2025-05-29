@@ -1,0 +1,39 @@
+name: Update README
+
+on:
+  schedule:
+    - cron: '0 0 * * *'   # Update setiap hari jam 00:00 UTC
+  workflow_dispatch:       # Bisa dijalankan manual juga
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Generate dynamic README content
+      run: |
+        # Contoh: Update README dengan tanggal dan quote hari ini
+        TODAY=$(date +"%A, %d %B %Y")
+        QUOTE="“Code is like humor. When you have to explain it, it’s bad.” – Cory House"
+        echo "<p align='center'>Today is: <strong>$TODAY</strong></p>" > README_DYNAMIC.md
+        echo "<p align='center'><em>$QUOTE</em></p>" >> README_DYNAMIC.md
+
+        # Gabungkan dengan README statis (README_BASE.md)
+        cat README_BASE.md README_DYNAMIC.md > README.md
+
+    - name: Commit and push changes
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git add README.md
+        git diff --quiet && echo "No changes to commit" || git commit -m "chore: update dynamic README content"
+        git push
+
