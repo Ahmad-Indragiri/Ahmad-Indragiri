@@ -1,9 +1,12 @@
-name: Update README
+name: Update Dynamic README
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # Update setiap hari jam 00:00 UTC
-  workflow_dispatch:       # Bisa dijalankan manual juga
+    - cron: '0 */6 * * *' # Update setiap 6 jam
+  workflow_dispatch: # Bisa dijalankan manual juga
+  push: # Tambahkan trigger ini jika Anda ingin README diperbarui setiap kali ada push ke main
+    branches:
+      - main # atau master, sesuaikan dengan nama branch utama Anda
 
 jobs:
   update-readme:
@@ -12,26 +15,33 @@ jobs:
       contents: write # Diperlukan untuk melakukan commit kembali ke repository
 
     steps:
-    - name: Checkout repo
-      uses: actions/checkout@v4 # Versi terbaru saat ini
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v4 # Versi terbaru saat ini
-      with:
-        node-version: '18' # Anda bisa menggunakan versi LTS yang lebih baru jika mau
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Gunakan versi LTS Node.js terbaru
+          cache: 'npm' # Cache dependencies npm jika Anda menggunakannya (misal untuk rss-parser)
 
-    - name: Generate dynamic README content
-      run: node ./.github/scripts/update-readme.js # Jalankan skrip Node.js
+      # Jika Anda menggunakan dependensi seperti rss-parser, uncomment baris berikut
+      # - name: Install dependencies
+      #   run: npm ci --prefix ./.github/scripts # Pastikan package.json ada di .github/scripts
 
-    - name: Commit and push changes
-      run: |
-        git config --global user.name "github-actions[bot]"
-        git config --global user.email "github-actions[bot]@users.noreply.github.com"
-        git add README.md
-        # Commit hanya jika ada perubahan pada README.md
-        if ! git diff --quiet README.md; then
-          git commit -m "chore(readme): update dynamic content"
-          git push
-        else
-          echo "No changes to README.md to commit."
-        fi
+      - name: Generate dynamic README content
+        run: node ./.github/scripts/update-readme.js
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          # Commit hanya jika ada perubahan pada README.md
+          if ! git diff --staged --quiet README.md; then
+            git commit -m "chore(readme): ✨ auto-update dynamic content"
+            git push
+          else
+            echo "No changes to README.md. Nothing to commit."
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
