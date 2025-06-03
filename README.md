@@ -107,9 +107,8 @@
       <td width="40%" valign="top">
         <strong>🌱 Currently Exploring:</strong>
         <ul>
-          <li>先进的 Next.js 模式</li>
-          <li>微服务架构</li>
-          <li><span id="dynamic-learning-topic">[A New Cool Tech!]</span></li>
+          <li> Next.js </li>
+          <li><span id="dynamic-learning-topic"> Machine Learning </span></li>
         </ul>
       </td>
     </tr>
@@ -138,5 +137,5 @@
   <br />
   <small><em>"The best way to predict the future is to create it." - Peter Drucker</em></small>
   <br>
-  <small>Powered by GitHub Actions & Node.js with ❤</small>
+  <small>Powered by GitHub Actions & Node.js </small>
 </div>
