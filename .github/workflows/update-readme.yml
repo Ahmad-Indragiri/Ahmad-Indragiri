@@ -1,0 +1,46 @@
+name: Update Dynamic README
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Berjalan setiap 6 jam
+    - cron: '0 */6 * * *'
+
+permissions:
+  contents: write # Izin untuk menulis ke repositori
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    steps:
+      # Langkah 1: Checkout kode dari repositori
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Langkah 2: Ambil kutipan acak dari API dan siapkan tanggal
+      - name: Fetch dynamic data
+        run: |
+          # Ambil kutipan dari API, format sebagai "Kutipan" – Penulis
+          QUOTE_JSON=$(curl -s "https://api.quotable.io/random?maxLength=80")
+          QUOTE_CONTENT=$(echo "$QUOTE_JSON" | jq -r .content)
+          QUOTE_AUTHOR=$(echo "$QUOTE_JSON" | jq -r .author)
+          FORMATTED_QUOTE="\"$QUOTE_CONTENT\" – $QUOTE_AUTHOR"
+          
+          # Simpan kutipan dan tanggal ke environment variable agar bisa dipakai di langkah selanjutnya
+          echo "DYNAMIC_QUOTE=$FORMATTED_QUOTE" >> $GITHUB_ENV
+          echo "LAST_UPDATED=$(TZ='Asia/Jakarta' date '+%d %B %Y, %H:%M:%S WIB')" >> $GITHUB_ENV
+
+      # Langkah 3: Perbarui file README.md dengan data baru
+      - name: Update README file
+        run: |
+          # Gunakan sed untuk mengganti konten di dalam tag span secara presisi
+          sed -i 's|<span id="dynamic-quote">.*</span>|<span id="dynamic-quote">'"${{ env.DYNAMIC_QUOTE }}"'</span>|g' README.md
+          sed -i 's|<span id="last-updated">.*</span>|<span id="last-updated">'"${{ env.LAST_UPDATED }}"'</span>|g' README.md
+          
+      # Langkah 4: Commit dan Push perubahan secara otomatis
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: 'docs: ✨ Dynamically update README'
+          commit_user_name: 'github-actions[bot]'
+          commit_user_email: 'github-actions[bot]@users.noreply.github.com'
