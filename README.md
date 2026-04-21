@@ -70,17 +70,6 @@
 <img src="https://github-readme-streak-stats.herokuapp.com/?user=ahmad-indragiri&theme=github-dark-blue&hide_border=true&date_format=M%20j%5B%2C%20Y%5D" width="60%" />
 </div>
 ---
- 
-## Contribution Graph
- 
-<div align="center">
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/ahmad-indragiri/ahmad-indragiri/output/github-contribution-grid-snake-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/ahmad-indragiri/ahmad-indragiri/output/github-contribution-grid-snake.svg">
-  <img alt="Contribution activity" src="https://raw.githubusercontent.com/ahmad-indragiri/ahmad-indragiri/output/github-contribution-grid-snake-dark.svg" width="90%"/>
-</picture>
-</div>
----
 
 ```
 Ahmad Abdillah Indragiri  ·  Indonesia  ·  2025
