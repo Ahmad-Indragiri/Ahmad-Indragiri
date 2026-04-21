@@ -1,16 +1,38 @@
-## Hi there 👋
+<div align="center">
 
-<!--
-**Ahmad-Indragiri/Ahmad-Indragiri** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+# Halo, Saya Indra 👋
 
-Here are some ideas to get you started:
+**Full-Stack Developer | Informatics Engineering Student | AI Researcher**
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+*Membangun solusi digital dari kode hingga riset.*
+
+---
+
+![Banner](https://capsule-render.vercel.app/api?type=waving&color=gradient&height=200&section=header&text=Ahmad%20Abdillah%20Indragiri&fontSize=40&fontAlignY=35&animation=fadeIn)
+
+---
+
+### 🛠 Tech Stack
+
+![Next.js](https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
+![Node.js](https://img.shields.io/badge/node.js-339933?style=for-the-badge&logo=nodedot.js&logoColor=white)
+![OpenCV](https://img.shields.io/badge/OpenCV-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+
+---
+
+### 🚀 Fokus Riset & Proyek Utama
+
+| Proyek | Deskripsi | Status |
+| :--- | :--- | :--- |
+| **LuxPark** | IoT-integrated digital parking reservation system. | 🏗 In Development |
+| **Linguistic Camouflage** | NLP Research: Sarcasm & Euphemism detection for social media. | 🔍 Researching |
+
+---
+
+### 📫 Let's Connect
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ahmad-abdillah-indragiri-bb41112b6/)
+[![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:ahmadindgr225@gmail.com)
+
+</div>
